@@ -13,15 +13,16 @@ sudo apt-get update
 sudo apt-get install -y ghc cabal-install
 
 # Set PATH
-export PATH=$FIXED_HOME/.cabal/bin:$PATH
-ls $HOME/.cabal/bin
-ls $FIXED_HOME/.cabal/bin || echo oh my god
-which -a cabal
+export PATH=$HOME/.cabal/bin:$FIXED_HOME/.cabal/bin:$PATH
+echo $HOME $FIXED_HOME
+ls $HOME/.cabal/bin || echo '$HOME' is away
+ls $FIXED_HOME/.cabal/bin || echo '$FIXED_HOME' is away
 
 echo "-----> Updating Cabal"
 cabal update
 echo "-----> Install latest cabal"
 cabal install cabal-install
+which -a cabal
 echo "-----> Release the hounds! Installing application"
 cd $BUILD_DIR
 cabal sandbox init
