@@ -10,7 +10,7 @@ CACHE_DIR=$2
 FIXED_HOME=/app
 
 sudo apt-get update
-sudo apt-get install ghc cabal-install
+sudo apt-get install -y ghc cabal-install
 
 # Set PATH
 export PATH=$FIXED_HOME/.cabal/bin:$PATH
