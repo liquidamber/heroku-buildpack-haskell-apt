@@ -7,23 +7,21 @@ set -eo pipefail
 BUILD_DIR=$1
 CACHE_DIR=$2
 
-FIXED_HOME=/app
-
 sudo apt-get update
 sudo apt-get install -y ghc cabal-install
-
-# Set PATH
-export PATH=$HOME/.cabal/bin:$FIXED_HOME/.cabal/bin:$PATH
-echo $HOME $FIXED_HOME
-ls $HOME/.cabal/bin || echo '$HOME' is away
-ls $FIXED_HOME/.cabal/bin || echo '$FIXED_HOME' is away
 
 echo "-----> Updating Cabal"
 cabal update
 echo "-----> Install latest cabal"
-cabal install cabal-install
+cabal install --prefix=$CACHE_DIR/.cabal cabal-install
+
+# Set PATH
+export PATH=$CACHE_DIR/.cabal/bin:$PATH
+echo $CACHE_DIR
+ls $CHCHE_DIR/.cabal/bin || echo '$CACHE_DIR' is away
 which -a cabal
+
 echo "-----> Release the hounds! Installing application"
 cd $BUILD_DIR
 cabal sandbox init
-cabal install -j5 --disable-library-profiling --disable-executable-profiling --disable-shared
+cabal install -j5 --enable-tests --disable-library-profiling --disable-executable-profiling --disable-shared
