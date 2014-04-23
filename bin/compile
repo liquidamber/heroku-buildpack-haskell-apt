@@ -18,7 +18,7 @@ cabal install --prefix=$CACHE_DIR/.cabal cabal-install
 # Set PATH
 export PATH=$CACHE_DIR/.cabal/bin:$PATH
 echo $CACHE_DIR
-ls $CHCHE_DIR/.cabal/bin || echo '$CACHE_DIR' is away
+ls $CAHCHE_DIR/.cabal/bin || echo '$CACHE_DIR' is away
 which -a cabal
 
 echo "-----> Release the hounds! Installing application"
